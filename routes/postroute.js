@@ -25,11 +25,11 @@ try {
 })
 
 postroute.get("/",async(req,res)=>{
-   
-      
+     const posts=await Post.find() 
+     const totaldata=posts.length
 try {
-    const posts=await Post.find()
-        res.status(200).send(posts)
+    
+        res.status(200).send({posts,totaldata})
     
 } catch (error) {
     console.log(error)
