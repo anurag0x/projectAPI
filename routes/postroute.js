@@ -57,7 +57,7 @@ postroute.get('/', async (req, res) => {
   
     try {
         const posts = await Post.find(filterOptions)
-          .sort(sortOptions)
+          .sort(sorting)
           .skip(skip)
           .limit(limit);
     
