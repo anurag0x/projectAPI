@@ -48,12 +48,12 @@ postroute.get('/', async (req, res) => {
       filterOptions.date = { $gte: new Date(req.query.date) };
     }
 
-    const sortOptions = {};
-    if (req.query.sort === 'rating') {
-      sortOptions.rating = -1; 
-    } else if (req.query.sort === 'price') {
-      sortOptions.price = 1; 
-    }
+    const sorting = {};
+    if (req.query.sortBy === 'rating') {
+        sorting.rating = req.query.sortOrder === 'asc' ? 1 : -1;
+      } else if (req.query.sortBy === 'price') {
+        sorting.price = req.query.sortOrder === 'asc' ? 1 : -1;
+      }
   
     try {
         const posts = await Post.find(filterOptions)
